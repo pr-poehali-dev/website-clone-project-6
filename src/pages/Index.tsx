@@ -7,11 +7,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('services');
+  const [clientLoginOpen, setClientLoginOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#2e2e2e] text-white overflow-x-hidden">
@@ -41,14 +45,17 @@ const Index = () => {
               
               <nav className="hidden lg:flex items-center space-x-8">
                 <a href="#services" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Услуги</a>
-                <a href="#tools" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Инструменты</a>
-                <a href="#construction" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Строительство</a>
+                <a href="#catalog" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Каталог</a>
+                <a href="#property" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Имущество</a>
                 <a href="#consulting" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Консалтинг</a>
+                <a href="#clients" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Клиентам</a>
+                <a href="#partners" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Партнёры</a>
                 <a href="#about" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">О компании</a>
                 <a href="#contacts" className="hover:text-[#cd7f32] transition-colors duration-300 font-medium">Контакты</a>
                 <Button 
                   variant="outline" 
                   size="sm"
+                  onClick={() => setClientLoginOpen(!clientLoginOpen)}
                   className="border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white transition-all duration-300"
                 >
                   <Icon name="User" size={16} className="mr-2" />
@@ -71,9 +78,11 @@ const Index = () => {
               <div className="lg:hidden mt-4 p-4 backdrop-blur-lg bg-black/30 rounded-xl border border-[#cd7f32]/20">
                 <nav className="flex flex-col space-y-3">
                   <a href="#services" className="hover:text-[#cd7f32] transition-colors">Услуги</a>
-                  <a href="#tools" className="hover:text-[#cd7f32] transition-colors">Инструменты</a>
-                  <a href="#construction" className="hover:text-[#cd7f32] transition-colors">Строительство</a>
+                  <a href="#catalog" className="hover:text-[#cd7f32] transition-colors">Каталог</a>
+                  <a href="#property" className="hover:text-[#cd7f32] transition-colors">Имущество</a>
                   <a href="#consulting" className="hover:text-[#cd7f32] transition-colors">Консалтинг</a>
+                  <a href="#clients" className="hover:text-[#cd7f32] transition-colors">Клиентам</a>
+                  <a href="#partners" className="hover:text-[#cd7f32] transition-colors">Партнёры</a>
                   <a href="#about" className="hover:text-[#cd7f32] transition-colors">О компании</a>
                   <a href="#contacts" className="hover:text-[#cd7f32] transition-colors">Контакты</a>
                 </nav>
@@ -86,14 +95,14 @@ const Index = () => {
         <section className="py-20 px-4 relative">
           <div className="container mx-auto text-center">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-              Профессиональные
+              Финансовые решения
               <span className="block text-[#cd7f32] bg-gradient-to-r from-[#cd7f32] to-[#cd7f32]/70 bg-clip-text text-transparent">
-                решения для бизнеса
+                нового поколения
               </span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-              Компания специализируется на оказании широкого спектра услуг как для корпоративных клиентов, 
-              так и для частных лиц. Профессионализм и ответственность — ключевые преимущества нашей компании.
+              Профессиональные финансовые услуги, работа с изъятым имуществом и комплексное сопровождение клиентов. 
+              Компания специализируется на оказании широкого спектра услуг для корпоративных клиентов и частных лиц.
             </p>
             
             {/* Search Bar */}
@@ -117,22 +126,22 @@ const Index = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in" style={{animationDelay: '0.6s'}}>
               <Button size="lg" className="bg-[#cd7f32] hover:bg-[#cd7f32]/80 text-white h-14 px-8 text-lg">
-                <Icon name="ShoppingCart" size={20} className="mr-2" />
-                Каталог товаров
+                <Icon name="ArrowRight" size={20} className="mr-2" />
+                Начать работу
               </Button>
               <Button variant="outline" size="lg" className="border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white h-14 px-8 text-lg">
-                <Icon name="Building" size={20} className="mr-2" />
-                Услуги консалтинга
+                <Icon name="FileText" size={20} className="mr-2" />
+                Документы
               </Button>
             </div>
 
             {/* Stats Section */}
             <div className="grid md:grid-cols-4 gap-6 mt-16 animate-fade-in" style={{animationDelay: '0.8s'}}>
               {[
-                { label: "Довольных клиентов", value: "2000+", icon: "Users" },
+                { label: "Довольных клиентов", value: "500+", icon: "Users" },
                 { label: "Лет опыта", value: "15+", icon: "Calendar" },
-                { label: "Проектов завершено", value: "500+", icon: "CheckCircle" },
-                { label: "Видов услуг", value: "50+", icon: "Star" }
+                { label: "Сделок завершено", value: "1200+", icon: "CheckCircle" },
+                { label: "Млн рублей оборот", value: "850+", icon: "TrendingUp" }
               ].map((stat, index) => (
                 <div key={index} className="backdrop-blur-lg bg-white/5 rounded-2xl p-6 border border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105">
                   <Icon name={stat.icon as any} className="text-[#cd7f32] mx-auto mb-3" size={32} />
@@ -154,40 +163,40 @@ const Index = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  icon: "Wrench",
-                  title: "Продажа инструментов",
-                  description: "Широкий ассортимент профессионального электроинструмента, бензоинструмента и ручного инструмента для всех видов работ",
-                  category: "Торговля"
+                  icon: "Gavel",
+                  title: "Реализация изъятого имущества",
+                  description: "Профессиональная оценка и реализация конфискованного имущества с максимальной выгодой для владельцев",
+                  category: "Имущество"
                 },
                 {
-                  icon: "Building",
-                  title: "Строительные услуги",
-                  description: "Полный цикл строительных работ от проектирования до сдачи объекта. Качество и соблюдение сроков гарантированы",
-                  category: "Строительство"
+                  icon: "FileText",
+                  title: "Документооборот",
+                  description: "Электронный документооборот и ведение финансовой отчётности, подготовка документов для торгов",
+                  category: "Документы"
                 },
                 {
                   icon: "Users",
-                  title: "Консалтинговые услуги",
-                  description: "Профессиональные консультации по вопросам бизнеса, юридическое сопровождение, аудит и оптимизация процессов",
+                  title: "Консультации",
+                  description: "Персональные консультации по финансовым вопросам и правовому сопровождению сделок",
                   category: "Консалтинг"
                 },
                 {
-                  icon: "Truck",
-                  title: "Логистические решения",
-                  description: "Организация доставки товаров, складские услуги, управление цепями поставок для вашего бизнеса",
-                  category: "Логистика"
+                  icon: "Shield",
+                  title: "Безопасность сделок",
+                  description: "Гарантированная безопасность всех финансовых операций и транзакций с полным юридическим сопровождением",
+                  category: "Безопасность"
                 },
                 {
-                  icon: "Settings",
-                  title: "Техническое обслуживание",
-                  description: "Сервисное обслуживание и ремонт инструмента, гарантийное и послегарантийное обслуживание",
-                  category: "Сервис"
+                  icon: "TrendingUp",
+                  title: "Инвестиционные решения",
+                  description: "Разработка индивидуальных инвестиционных стратегий и управление финансовыми активами",
+                  category: "Инвестиции"
                 },
                 {
-                  icon: "BookOpen",
-                  title: "Обучение и сертификация",
-                  description: "Профессиональное обучение работе с инструментом, сертификация специалистов, повышение квалификации",
-                  category: "Образование"
+                  icon: "Clock",
+                  title: "Срочные операции",
+                  description: "Экстренное решение финансовых вопросов в кратчайшие сроки с привлечением экспертов",
+                  category: "Срочно"
                 }
               ].map((service, index) => (
                 <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105 group">
@@ -218,53 +227,53 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Tools Catalog Section */}
-        <section id="tools" className="py-16 px-4 relative">
+        {/* Catalog Section */}
+        <section id="catalog" className="py-16 px-4 relative">
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 text-white">
-              Каталог <span className="text-[#cd7f32]">инструментов</span>
+              Каталог <span className="text-[#cd7f32]">услуг и решений</span>
             </h2>
 
-            <Tabs defaultValue="electric" className="max-w-6xl mx-auto">
+            <Tabs defaultValue="financial" className="max-w-6xl mx-auto">
               <TabsList className="grid w-full grid-cols-4 bg-black/20 backdrop-blur-md border border-[#cd7f32]/20">
-                <TabsTrigger value="electric" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
-                  Электроинструмент
+                <TabsTrigger value="financial" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
+                  Финансовые услуги
                 </TabsTrigger>
-                <TabsTrigger value="petrol" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
-                  Бензоинструмент
+                <TabsTrigger value="legal" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
+                  Юридические услуги
                 </TabsTrigger>
-                <TabsTrigger value="hand" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
-                  Ручной инструмент
+                <TabsTrigger value="consulting" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
+                  Консалтинг
                 </TabsTrigger>
-                <TabsTrigger value="accessories" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
-                  Аксессуары
+                <TabsTrigger value="property" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">
+                  Имущество
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="electric" className="mt-8">
+              <TabsContent value="financial" className="mt-8">
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {[
-                    { name: "Дрели и шуруповёрты", price: "от 2,500 ₽", items: "45+ товаров", icon: "Drill" },
-                    { name: "Перфораторы", price: "от 8,900 ₽", items: "28+ товаров", icon: "Hammer" },
-                    { name: "Угловые шлифмашины", price: "от 3,200 ₽", items: "32+ товаров", icon: "Settings" },
-                    { name: "Циркульные пилы", price: "от 6,500 ₽", items: "21+ товар", icon: "Saw" },
-                    { name: "Лобзики", price: "от 2,800 ₽", items: "19+ товаров", icon: "Move" },
-                    { name: "Рубанки", price: "от 4,100 ₽", items: "15+ товаров", icon: "Plane" },
-                    { name: "Фрезеры", price: "от 7,200 ₽", items: "12+ товаров", icon: "Router" },
-                    { name: "Многофункциональные", price: "от 5,500 ₽", items: "24+ товара", icon: "Tool" }
-                  ].map((tool, index) => (
+                    { name: "Оценка активов", description: "Независимая оценка", price: "от 15,000 ₽" },
+                    { name: "Финансовый анализ", description: "Аудит и анализ", price: "от 25,000 ₽" },
+                    { name: "Инвестиционное планирование", description: "Стратегии роста", price: "от 50,000 ₽" },
+                    { name: "Управление рисками", description: "Минимизация потерь", price: "от 35,000 ₽" },
+                    { name: "Кредитные консультации", description: "Получение финансирования", price: "от 20,000 ₽" },
+                    { name: "Налоговое планирование", description: "Оптимизация налогов", price: "от 30,000 ₽" },
+                    { name: "Банкротство", description: "Процедуры банкротства", price: "от 80,000 ₽" },
+                    { name: "Реструктуризация долгов", description: "Управление долгами", price: "от 40,000 ₽" }
+                  ].map((service, index) => (
                     <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105 cursor-pointer group">
                       <CardContent className="p-6 text-center">
                         <div className="w-16 h-16 bg-gradient-to-br from-[#cd7f32] to-[#cd7f32]/70 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <Icon name="Wrench" className="text-white" size={24} />
+                          <Icon name="TrendingUp" className="text-white" size={24} />
                         </div>
                         <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#cd7f32] transition-colors">
-                          {tool.name}
+                          {service.name}
                         </h3>
-                        <p className="text-2xl font-bold text-[#cd7f32] mb-1">{tool.price}</p>
-                        <p className="text-sm text-gray-400">{tool.items}</p>
-                        <Button size="sm" className="mt-4 bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
-                          Смотреть
+                        <p className="text-sm text-gray-400 mb-2">{service.description}</p>
+                        <p className="text-xl font-bold text-[#cd7f32] mb-3">{service.price}</p>
+                        <Button size="sm" className="bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
+                          Заказать
                         </Button>
                       </CardContent>
                     </Card>
@@ -272,26 +281,26 @@ const Index = () => {
                 </div>
               </TabsContent>
               
-              <TabsContent value="petrol" className="mt-8">
+              <TabsContent value="legal" className="mt-8">
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {[
-                    { name: "Бензопилы", price: "от 12,500 ₽", items: "18+ товаров" },
-                    { name: "Триммеры", price: "от 8,900 ₽", items: "25+ товаров" },
-                    { name: "Газонокосилки", price: "от 15,200 ₽", items: "12+ товаров" },
-                    { name: "Генераторы", price: "от 22,000 ₽", items: "15+ товаров" }
-                  ].map((tool, index) => (
+                    { name: "Договоры", description: "Составление и анализ", price: "от 8,000 ₽" },
+                    { name: "Судебное представительство", description: "Защита в суде", price: "от 45,000 ₽" },
+                    { name: "Корпоративное право", description: "Сопровождение бизнеса", price: "от 30,000 ₽" },
+                    { name: "Интеллектуальная собственность", description: "Регистрация и защита", price: "от 25,000 ₽" }
+                  ].map((service, index) => (
                     <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105 cursor-pointer group">
                       <CardContent className="p-6 text-center">
                         <div className="w-16 h-16 bg-gradient-to-br from-[#cd7f32] to-[#cd7f32]/70 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <Icon name="Zap" className="text-white" size={24} />
+                          <Icon name="Scale" className="text-white" size={24} />
                         </div>
                         <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#cd7f32] transition-colors">
-                          {tool.name}
+                          {service.name}
                         </h3>
-                        <p className="text-2xl font-bold text-[#cd7f32] mb-1">{tool.price}</p>
-                        <p className="text-sm text-gray-400">{tool.items}</p>
-                        <Button size="sm" className="mt-4 bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
-                          Смотреть
+                        <p className="text-sm text-gray-400 mb-2">{service.description}</p>
+                        <p className="text-xl font-bold text-[#cd7f32] mb-3">{service.price}</p>
+                        <Button size="sm" className="bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
+                          Заказать
                         </Button>
                       </CardContent>
                     </Card>
@@ -299,26 +308,26 @@ const Index = () => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="hand" className="mt-8">
+              <TabsContent value="consulting" className="mt-8">
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {[
-                    { name: "Молотки", price: "от 450 ₽", items: "35+ товаров" },
-                    { name: "Отвёртки", price: "от 180 ₽", items: "82+ товара" },
-                    { name: "Ключи", price: "от 290 ₽", items: "125+ товаров" },
-                    { name: "Пилы", price: "от 650 ₽", items: "28+ товаров" }
-                  ].map((tool, index) => (
+                    { name: "Бизнес-планирование", description: "Разработка стратегии", price: "от 60,000 ₽" },
+                    { name: "Маркетинговые исследования", description: "Анализ рынка", price: "от 40,000 ₽" },
+                    { name: "IT-консалтинг", description: "Цифровая трансформация", price: "от 55,000 ₽" },
+                    { name: "HR-консалтинг", description: "Управление персоналом", price: "от 35,000 ₽" }
+                  ].map((service, index) => (
                     <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105 cursor-pointer group">
                       <CardContent className="p-6 text-center">
                         <div className="w-16 h-16 bg-gradient-to-br from-[#cd7f32] to-[#cd7f32]/70 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <Icon name="Hammer" className="text-white" size={24} />
+                          <Icon name="Lightbulb" className="text-white" size={24} />
                         </div>
                         <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#cd7f32] transition-colors">
-                          {tool.name}
+                          {service.name}
                         </h3>
-                        <p className="text-2xl font-bold text-[#cd7f32] mb-1">{tool.price}</p>
-                        <p className="text-sm text-gray-400">{tool.items}</p>
-                        <Button size="sm" className="mt-4 bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
-                          Смотреть
+                        <p className="text-sm text-gray-400 mb-2">{service.description}</p>
+                        <p className="text-xl font-bold text-[#cd7f32] mb-3">{service.price}</p>
+                        <Button size="sm" className="bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
+                          Заказать
                         </Button>
                       </CardContent>
                     </Card>
@@ -326,26 +335,26 @@ const Index = () => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="accessories" className="mt-8">
+              <TabsContent value="property" className="mt-8">
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {[
-                    { name: "Диски и круги", price: "от 120 ₽", items: "150+ товаров" },
-                    { name: "Свёрла", price: "от 85 ₽", items: "200+ товаров" },
-                    { name: "Биты и насадки", price: "от 45 ₽", items: "180+ товаров" },
-                    { name: "Щётки", price: "от 95 ₽", items: "75+ товаров" }
-                  ].map((tool, index) => (
+                    { name: "Оценка недвижимости", description: "Независимая оценка", price: "от 12,000 ₽" },
+                    { name: "Организация торгов", description: "Проведение аукционов", price: "от 25,000 ₽" },
+                    { name: "Управление активами", description: "Эффективное управление", price: "от 35,000 ₽" },
+                    { name: "Реализация имущества", description: "Продажа активов", price: "от 20,000 ₽" }
+                  ].map((service, index) => (
                     <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105 cursor-pointer group">
                       <CardContent className="p-6 text-center">
                         <div className="w-16 h-16 bg-gradient-to-br from-[#cd7f32] to-[#cd7f32]/70 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <Icon name="Package" className="text-white" size={24} />
+                          <Icon name="Building2" className="text-white" size={24} />
                         </div>
                         <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#cd7f32] transition-colors">
-                          {tool.name}
+                          {service.name}
                         </h3>
-                        <p className="text-2xl font-bold text-[#cd7f32] mb-1">{tool.price}</p>
-                        <p className="text-sm text-gray-400">{tool.items}</p>
-                        <Button size="sm" className="mt-4 bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
-                          Смотреть
+                        <p className="text-sm text-gray-400 mb-2">{service.description}</p>
+                        <p className="text-xl font-bold text-[#cd7f32] mb-3">{service.price}</p>
+                        <Button size="sm" className="bg-transparent border border-[#cd7f32] text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
+                          Заказать
                         </Button>
                       </CardContent>
                     </Card>
@@ -356,82 +365,312 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Construction Services */}
-        <section id="construction" className="py-16 px-4 relative">
+        {/* Client Portal & Documents */}
+        <section id="clients" className="py-16 px-4">
+          <div className="container mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 text-white">
+              <span className="text-[#cd7f32]">Клиентам</span>
+            </h2>
+            
+            <Tabs defaultValue="portal" className="max-w-4xl mx-auto">
+              <TabsList className="grid w-full grid-cols-3 bg-black/20 backdrop-blur-md border border-[#cd7f32]/20">
+                <TabsTrigger value="portal" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">Личный кабинет</TabsTrigger>
+                <TabsTrigger value="documents" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">Документы</TabsTrigger>
+                <TabsTrigger value="property" className="data-[state=active]:bg-[#cd7f32] data-[state=active]:text-white">Имущество</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="portal" className="mt-8">
+                <Card className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20">
+                  <CardHeader>
+                    <CardTitle className="text-white">Вход в личный кабинет</CardTitle>
+                    <CardDescription className="text-gray-300">
+                      Получите доступ к вашим документам и отслеживайте статус заявок
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <Input placeholder="Логин или email" className="bg-white/10 border-[#cd7f32]/30 text-white placeholder:text-gray-400 focus:border-[#cd7f32]" />
+                      <Input type="password" placeholder="Пароль" className="bg-white/10 border-[#cd7f32]/30 text-white placeholder:text-gray-400 focus:border-[#cd7f32]" />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <Button className="bg-[#cd7f32] hover:bg-[#cd7f32]/80 text-white">
+                        Войти
+                      </Button>
+                      <Button variant="link" className="text-[#cd7f32] hover:text-[#cd7f32]/80">
+                        Забыли пароль?
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="documents" className="mt-8">
+                <Card className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20">
+                  <CardHeader>
+                    <CardTitle className="text-white">Документы и формы</CardTitle>
+                    <CardDescription className="text-gray-300">
+                      Скачайте необходимые документы и заполните онлайн-формы
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {[
+                        "Заявление на оценку имущества",
+                        "Договор на оказание услуг",
+                        "Справка о рыночной стоимости",
+                        "Акт приёма-передачи"
+                      ].map((doc, index) => (
+                        <div key={index} className="flex items-center justify-between p-3 bg-white/10 rounded-lg">
+                          <div className="flex items-center">
+                            <Icon name="FileText" className="text-[#cd7f32] mr-3" size={20} />
+                            <span className="text-white text-sm">{doc}</span>
+                          </div>
+                          <Button size="sm" variant="outline" className="border-[#cd7f32]/50 text-[#cd7f32] hover:bg-[#cd7f32] hover:text-white">
+                            <Icon name="Download" size={16} />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="property" className="mt-8">
+                <Card className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20">
+                  <CardHeader>
+                    <CardTitle className="text-white">Реализация изъятого имущества</CardTitle>
+                    <CardDescription className="text-gray-300">
+                      Текущие лоты и результаты торгов
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {[
+                        { type: "Недвижимость", items: "Квартира 2-комн.", status: "Торги", price: "2,850,000 ₽" },
+                        { type: "Транспорт", items: "BMW X5 2019г.", status: "Оценка", price: "3,200,000 ₽" },
+                        { type: "Оборудование", items: "Станки промышленные", status: "Реализовано", price: "1,750,000 ₽" }
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center justify-between p-4 bg-white/10 rounded-lg">
+                          <div>
+                            <div className="text-white font-medium">{item.items}</div>
+                            <div className="text-sm text-gray-400">{item.type}</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-white font-medium">{item.price}</div>
+                            <Badge variant={item.status === 'Реализовано' ? 'default' : 'secondary'} className="bg-[#cd7f32] text-white">
+                              {item.status}
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 px-4 relative">
           <div className="absolute inset-0 bg-gradient-to-r from-[#cd7f32]/5 to-transparent"></div>
+          <div className="container mx-auto max-w-3xl relative">
+            <h2 className="text-4xl font-bold text-center mb-12 text-white">
+              Часто задаваемые <span className="text-[#cd7f32]">вопросы</span>
+            </h2>
+            
+            <Accordion type="single" collapsible className="space-y-4">
+              {[
+                {
+                  question: "Как происходит оценка изъятого имущества?",
+                  answer: "Оценка проводится сертифицированными оценщиками в соответствии с федеральными стандартами оценки. Мы учитываем рыночную стоимость, техническое состояние и другие факторы."
+                },
+                {
+                  question: "Какие документы нужны для работы с нами?",
+                  answer: "Для физических лиц: паспорт, ИНН. Для юридических лиц: учредительные документы, выписка из ЕГРЮЛ, доверенность представителя."
+                },
+                {
+                  question: "Сколько времени занимает реализация имущества?",
+                  answer: "Сроки зависят от типа имущества и рыночной ситуации. Обычно процесс занимает от 30 до 90 дней с момента подачи заявки."
+                },
+                {
+                  question: "Как обеспечивается безопасность сделок?",
+                  answer: "Мы работаем только в рамках действующего законодательства, все операции страхуются, применяется многоуровневая система контроля."
+                }
+              ].map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 rounded-xl">
+                  <AccordionTrigger className="px-6 text-white hover:text-[#cd7f32]">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 text-gray-300">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
+        {/* Partners Section */}
+        <section id="partners" className="py-16 px-4">
+          <div className="container mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 text-white">
+              <span className="text-[#cd7f32]">Партнёры</span>
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                "Федеральная служба судебных приставов",
+                "Росимущество",
+                "Банковские организации",
+                "Оценочные компании"
+              ].map((partner, index) => (
+                <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 text-center hover:border-[#cd7f32]/40 transition-colors">
+                  <CardContent className="p-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#cd7f32] to-[#cd7f32]/70 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Icon name="Handshake" className="text-white" size={32} />
+                    </div>
+                    <h3 className="text-white font-medium">{partner}</h3>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Property Realization Section */}
+        <section id="property" className="py-16 px-4 relative">
+          <div className="absolute inset-0 bg-gradient-to-l from-[#cd7f32]/5 to-transparent"></div>
           <div className="container mx-auto relative">
             <h2 className="text-4xl font-bold text-center mb-12 text-white">
-              Строительные <span className="text-[#cd7f32]">услуги</span>
+              Реализация <span className="text-[#cd7f32]">изъятого имущества</span>
             </h2>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <div className="backdrop-blur-lg bg-white/5 rounded-2xl p-8 border border-[#cd7f32]/20">
-                  <h3 className="text-2xl font-bold text-white mb-6">Наши возможности</h3>
-                  
-                  <div className="space-y-6">
-                    {[
-                      { service: "Проектирование и архитектура", progress: 95 },
-                      { service: "Строительство зданий", progress: 90 },
-                      { service: "Отделочные работы", progress: 88 },
-                      { service: "Инженерные системы", progress: 85 },
-                      { service: "Ландшафтный дизайн", progress: 80 }
-                    ].map((item, index) => (
-                      <div key={index} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="text-white font-medium">{item.service}</span>
-                          <span className="text-[#cd7f32] font-bold">{item.progress}%</span>
+            <div className="grid lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-6">
+                <Card className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center">
+                      <Icon name="Gavel" className="text-[#cd7f32] mr-2" size={24} />
+                      Текущие торги
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {[
+                        {
+                          category: "Недвижимость",
+                          item: "Квартира 3-комнатная, 85 кв.м",
+                          location: "г. Москва, ул. Ленина, 45",
+                          startPrice: "4,200,000 ₽",
+                          currentPrice: "4,580,000 ₽",
+                          endDate: "15.08.2024 15:00",
+                          status: "active"
+                        },
+                        {
+                          category: "Транспорт",
+                          item: "Mercedes-Benz E-Class 2020г.",
+                          location: "Пробег 45,000 км",
+                          startPrice: "2,850,000 ₽",
+                          currentPrice: "3,120,000 ₽", 
+                          endDate: "18.08.2024 14:30",
+                          status: "active"
+                        },
+                        {
+                          category: "Оборудование",
+                          item: "Станок токарный ЧПУ",
+                          location: "Состояние: рабочее",
+                          startPrice: "850,000 ₽",
+                          currentPrice: "920,000 ₽",
+                          endDate: "20.08.2024 16:00",
+                          status: "ending"
+                        }
+                      ].map((lot, index) => (
+                        <div key={index} className="p-4 bg-white/10 rounded-lg border border-[#cd7f32]/20">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h3 className="text-white font-semibold mb-1">{lot.item}</h3>
+                              <p className="text-gray-400 text-sm">{lot.location}</p>
+                            </div>
+                            <Badge variant={lot.status === 'active' ? 'default' : 'destructive'} className="bg-[#cd7f32] text-white">
+                              {lot.status === 'active' ? 'Активные торги' : 'Завершаются'}
+                            </Badge>
+                          </div>
+                          <div className="grid grid-cols-3 gap-4 text-sm">
+                            <div>
+                              <span className="text-gray-400">Стартовая цена:</span>
+                              <div className="text-white font-medium">{lot.startPrice}</div>
+                            </div>
+                            <div>
+                              <span className="text-gray-400">Текущая цена:</span>
+                              <div className="text-[#cd7f32] font-bold">{lot.currentPrice}</div>
+                            </div>
+                            <div>
+                              <span className="text-gray-400">Окончание:</span>
+                              <div className="text-white font-medium">{lot.endDate}</div>
+                            </div>
+                          </div>
+                          <Button size="sm" className="mt-3 bg-[#cd7f32] hover:bg-[#cd7f32]/80 text-white">
+                            Подать заявку
+                          </Button>
                         </div>
-                        <Progress 
-                          value={item.progress} 
-                          className="h-2 bg-white/10"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  {
-                    icon: "Home",
-                    title: "Жилищное строительство",
-                    description: "Строительство коттеджей, загородных домов, таунхаусов под ключ",
-                    projects: "120+ проектов"
-                  },
-                  {
-                    icon: "Building",
-                    title: "Коммерческая недвижимость",
-                    description: "Офисные здания, торговые центры, производственные помещения",
-                    projects: "85+ проектов"
-                  },
-                  {
-                    icon: "Truck",
-                    title: "Промышленное строительство",
-                    description: "Заводы, склады, логистические комплексы, инфраструктурные объекты",
-                    projects: "45+ проектов"
-                  },
-                  {
-                    icon: "Trees",
-                    title: "Благоустройство территории",
-                    description: "Ландшафтное планирование, озеленение, дорожки и малые формы",
-                    projects: "200+ проектов"
-                  }
-                ].map((service, index) => (
-                  <Card key={index} className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20 hover:border-[#cd7f32]/40 transition-all duration-300 hover:scale-105">
-                    <CardContent className="p-6">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#cd7f32] to-[#cd7f32]/70 rounded-lg flex items-center justify-center mb-4">
-                        <Icon name={service.icon as any} className="text-white" size={24} />
-                      </div>
-                      <h3 className="text-lg font-bold text-white mb-3">{service.title}</h3>
-                      <p className="text-gray-300 text-sm mb-4">{service.description}</p>
-                      <Badge variant="outline" className="border-[#cd7f32]/50 text-[#cd7f32]">
-                        {service.projects}
-                      </Badge>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="space-y-6">
+                <Card className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center">
+                      <Icon name="BarChart3" className="text-[#cd7f32] mr-2" size={24} />
+                      Статистика торгов
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#cd7f32] mb-1">847</div>
+                      <div className="text-sm text-gray-400">лотов реализовано</div>
+                    </div>
+                    <Separator className="bg-[#cd7f32]/20" />
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#cd7f32] mb-1">2.4 млрд ₽</div>
+                      <div className="text-sm text-gray-400">общая сумма сделок</div>
+                    </div>
+                    <Separator className="bg-[#cd7f32]/20" />
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#cd7f32] mb-1">94%</div>
+                      <div className="text-sm text-gray-400">успешных продаж</div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="backdrop-blur-lg bg-white/5 border-[#cd7f32]/20">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center">
+                      <Icon name="FileText" className="text-[#cd7f32] mr-2" size={24} />
+                      Подать заявку
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Input placeholder="Ваше имя" className="bg-white/10 border-[#cd7f32]/30 text-white placeholder:text-gray-400 focus:border-[#cd7f32]" />
+                    <Input placeholder="Телефон" className="bg-white/10 border-[#cd7f32]/30 text-white placeholder:text-gray-400 focus:border-[#cd7f32]" />
+                    <Select>
+                      <SelectTrigger className="bg-white/10 border-[#cd7f32]/30 text-white focus:border-[#cd7f32]">
+                        <SelectValue placeholder="Тип имущества" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#2e2e2e] border-[#cd7f32]/30">
+                        <SelectItem value="real-estate" className="text-white hover:bg-[#cd7f32]/20">Недвижимость</SelectItem>
+                        <SelectItem value="transport" className="text-white hover:bg-[#cd7f32]/20">Транспорт</SelectItem>
+                        <SelectItem value="equipment" className="text-white hover:bg-[#cd7f32]/20">Оборудование</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Button className="w-full bg-[#cd7f32] hover:bg-[#cd7f32]/80 text-white">
+                      Отправить заявку
+                    </Button>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
